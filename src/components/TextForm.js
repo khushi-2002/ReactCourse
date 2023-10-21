@@ -23,6 +23,21 @@ export default function TextForm(props) {
     const handleReverseClick = ()=>{
         SetupText(text.split(' ').reverse().join(' '))
     }
+
+    const handleCopyClick = ()=>{
+        let newText = document.getElementById('mybox')
+        console.log(newText)
+        newText.select() // To select the element of html
+        console.log(newText)
+        console.log(newText.value)
+        console.log(newText.id)
+        navigator.clipboard.writeText(newText.value)
+    }
+
+    const handleExtraClick = ()=>{
+       SetupText(text.split(/[ ]+/).join(' '))
+    }
+
     // const [text, SetupText] = useState("Enter your Text here")
     const [text, SetupText] = useState("")
     return (
@@ -36,6 +51,8 @@ export default function TextForm(props) {
                 <button className="btn btn-success mx-1" onClick={handleDownClick}>Convert to LowerCase</button>
                 <button className="btn btn-danger mx-1" onClick={handleClearClick}>Clear Text</button>
                 <button className="btn btn-secondary mx-1" onClick={handleReverseClick}>Reverse Text</button>
+                <button className="btn btn-secondary mx-1" onClick={handleCopyClick}>Copy Text</button>
+                <button className="btn btn-secondary mx-1" onClick={handleExtraClick}>Remove Extra Spaces</button>
             </div>
             <div className="container my-3">
                 <h2>Your Text Summary</h2>
